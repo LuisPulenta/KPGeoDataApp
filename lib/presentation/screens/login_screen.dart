@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:kpgeodataapp/config/constants/constants.dart';
 import 'package:kpgeodataapp/presentation/blocs/login/login_cubit.dart';
 import 'package:kpgeodataapp/presentation/widgets/widgets.dart';
 
@@ -29,25 +31,35 @@ class _LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final colors = Theme.of(context).colorScheme;
+    final textStyles = Theme.of(context).textTheme;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
+          children: [
             Padding(
-              padding: EdgeInsets.only(top: 40),
+              padding: EdgeInsets.only(top: size.height * 0.1),
               child: Image(
-                image: AssetImage('assets/logo.png'),
-                width: 400,
+                image: const AssetImage('assets/kplogo.png'),
+                width: size.width * 0.8,
               ),
             ),
             SizedBox(
-              height: 10,
+              height: size.height * 0.025,
+            ),
+            Text(
+              'KPGeoData App V.${Constants.version}',
+              style: textStyles.headlineLarge!.copyWith(color: colors.primary),
+            ),
+            SizedBox(
+              height: size.height * 0.05,
             ),
             _LoginForm(),
             SizedBox(
-              height: 10,
+              height: size.height * 0.05,
             ),
           ],
         ),
@@ -65,7 +77,9 @@ class _LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     final colors = Theme.of(context).colorScheme;
+    final textStyles = Theme.of(context).textTheme;
     final loginCubit = context.watch<LoginCubit>();
     final email = loginCubit.state.email;
     final password = loginCubit.state.password;
@@ -99,8 +113,8 @@ class _LoginForm extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: size.height * 0.05,
                 ),
                 CustomTextFormField(
                   label: 'Correo electrónico',
@@ -129,8 +143,8 @@ class _LoginForm extends StatelessWidget {
                     loginCubit.toogleShowPassword();
                   },
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: size.height * 0.025,
                 ),
                 CustomButton(
                   color: colors.inversePrimary,
@@ -142,8 +156,22 @@ class _LoginForm extends StatelessWidget {
                     loginCubit.onSubmit();
                   },
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: size.height * 0.0125,
+                ),
+                TextButton(
+                    onPressed: () {
+                      context.push('/recoverpasswordscreen');
+                    },
+                    child: Text(
+                      'Olvidé mi contraseña',
+                      style: textStyles.titleMedium!.copyWith(
+                          color: colors.primary,
+                          decoration: TextDecoration.underline,
+                          decorationColor: colors.primary),
+                    )),
+                SizedBox(
+                  height: size.height * 0.0125,
                 ),
               ],
             ),
