@@ -161,7 +161,7 @@ class _LoginForm extends StatelessWidget {
                 ),
                 TextButton(
                     onPressed: () {
-                      context.push('/recoverpasswordscreen');
+                      context.push('/recoverpassword');
                     },
                     child: Text(
                       'Olvidé mi contraseña',

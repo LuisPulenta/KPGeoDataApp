@@ -7,7 +7,7 @@ class RecoverPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('RecoverPasswordScreen'),
+        title: const Text('Recuperar Contraseña'),
         centerTitle: true,
       ),
       body: const Center(
