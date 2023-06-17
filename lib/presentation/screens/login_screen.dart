@@ -16,7 +16,8 @@ class LoginScreen extends StatelessWidget {
       //   centerTitle: true,
       // ),
       body: BlocProvider(
-          create: (context) => LoginCubit(), child: const _LoginView()),
+          create: (context) => LoginCubit(),
+          child: const GeometricalBackground(child: _LoginView())),
     );
   }
 }
