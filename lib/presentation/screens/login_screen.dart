@@ -25,9 +25,7 @@ class LoginScreen extends StatelessWidget {
 //------------------------ _LoginView ---------------------------
 //---------------------------------------------------------------
 class _LoginView extends StatelessWidget {
-  const _LoginView({
-    super.key,
-  });
+  const _LoginView();
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +55,7 @@ class _LoginView extends StatelessWidget {
             SizedBox(
               height: size.height * 0.05,
             ),
-            _LoginForm(),
+            const _LoginForm(),
             SizedBox(
               height: size.height * 0.05,
             ),
@@ -161,7 +159,7 @@ class _LoginForm extends StatelessWidget {
                 ),
                 TextButton(
                     onPressed: () {
-                      context.push('/recoverpassword');
+                      context.push('/changepassword');
                     },
                     child: Text(
                       'Olvidé mi contraseña',

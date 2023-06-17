@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:kpgeodataapp/infrastructure/inputs/inputs.dart';
 

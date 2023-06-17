@@ -2,7 +2,7 @@ part of 'login_cubit.dart';
 
 enum FormStatus { invalid, valid, validating }
 
-class LoginFormState {
+class LoginFormState extends Equatable {
   final FormStatus formStatus;
   final bool isValid;
   final Email email;

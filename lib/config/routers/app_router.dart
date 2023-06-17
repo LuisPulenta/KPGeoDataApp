@@ -18,6 +18,10 @@ final appRouter = GoRouter(
       builder: (context, state) => const RecoverPasswordScreen(),
     ),
     GoRoute(
+      path: '/changepassword',
+      builder: (context, state) => const ChangePasswordScreen(),
+    ),
+    GoRoute(
       path: '/home',
       builder: (context, state) => const HomeScreen(),
     ),

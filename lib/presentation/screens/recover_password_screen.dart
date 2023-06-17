@@ -24,15 +24,11 @@ class RecoverPasswordScreen extends StatelessWidget {
 //------------------- _RecoverPasswordView ----------------------
 //---------------------------------------------------------------
 class _RecoverPasswordView extends StatelessWidget {
-  const _RecoverPasswordView({
-    super.key,
-  });
+  const _RecoverPasswordView();
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final colors = Theme.of(context).colorScheme;
-    final textStyles = Theme.of(context).textTheme;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: SingleChildScrollView(
@@ -42,14 +38,14 @@ class _RecoverPasswordView extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: size.height * 0),
               child: Image(
-                image: const AssetImage('assets/recoverpassword.png'),
+                image: const AssetImage('assets/password.png'),
                 width: size.width * 0.6,
               ),
             ),
             SizedBox(
               height: size.height * 0.01,
             ),
-            _RecoverPassword(),
+            const _RecoverPassword(),
             SizedBox(
               height: size.height * 0.05,
             ),
@@ -71,7 +67,6 @@ class _RecoverPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final colors = Theme.of(context).colorScheme;
-    final textStyles = Theme.of(context).textTheme;
     final recoverPasswordCubit = context.watch<RecoverPasswordCubit>();
     final email = recoverPasswordCubit.state.email;
 

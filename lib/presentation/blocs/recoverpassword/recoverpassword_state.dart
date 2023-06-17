@@ -2,7 +2,7 @@ part of 'recoverpassword_cubit.dart';
 
 enum FormStatus { invalid, valid, validating }
 
-class RecoverPasswordFormState {
+class RecoverPasswordFormState extends Equatable {
   final FormStatus formStatus;
   final bool isValid;
   final Email email;
