@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kpgeodataapp/config/helpers/helpers.dart';
+import 'package:kpgeodataapp/config/helpers/preferences.dart';
 
 const List<Color> colorThemes = [
   Colors.blueAccent,
@@ -46,10 +48,10 @@ const List<Color> colorThemes = [
 ];
 
 class AppTheme {
-  final int selectedColor;
-  final bool isDarkmode;
+  final int selectedColor = Preferences.selectedColor;
+  final bool isDarkmode = Preferences.isDarkmode;
 
-  AppTheme({this.selectedColor = 0, this.isDarkmode = false})
+  AppTheme({required selectedColor, required isDarkmode})
       : assert(selectedColor >= 0 && selectedColor <= colorThemes.length - 1,
             'selectedColor debe estar entre 0 y ${colorThemes.length}');
 

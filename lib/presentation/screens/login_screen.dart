@@ -5,6 +5,8 @@ import 'package:kpgeodataapp/config/constants/constants.dart';
 import 'package:kpgeodataapp/presentation/blocs/login/login_cubit.dart';
 import 'package:kpgeodataapp/presentation/widgets/widgets.dart';
 
+import '../../config/helpers/preferences.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -152,7 +154,17 @@ class _LoginForm extends StatelessWidget {
                   width: double.infinity,
                   height: 54,
                   onPressed: () {
+                    FocusScope.of(context).unfocus(); //Oculta el teclado
                     loginCubit.onSubmit();
+                    if ((loginCubit.state.email.value.toString() ==
+                            'luis@yopmail.com') &&
+                        (loginCubit.state.password.value.toString() ==
+                            '123456')) {
+                      Preferences.userBody =
+                          loginCubit.state.email.value.toString();
+                      Preferences.rememberme = true;
+                      context.go('/home');
+                    }
                   },
                 ),
                 SizedBox(
@@ -160,7 +172,7 @@ class _LoginForm extends StatelessWidget {
                 ),
                 TextButton(
                     onPressed: () {
-                      context.push('/changepassword');
+                      context.push('/recoverpassword');
                     },
                     child: Text(
                       'Olvidé mi contraseña',

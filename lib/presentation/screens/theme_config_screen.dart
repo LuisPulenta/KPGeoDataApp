@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kpgeodataapp/config/helpers/helpers.dart';
 
 import '../providers/theme_provider.dart';
 
@@ -54,6 +55,7 @@ class _ThemeConfigView extends ConsumerWidget {
             value: ref.read(isDarkmodeProvider.notifier).state,
             onChanged: (value) {
               ref.read(isDarkmodeProvider.notifier).update((state) => !state);
+              Preferences.isDarkmode = !Preferences.isDarkmode;
             },
           ),
           Divider(
@@ -115,6 +117,7 @@ class _CustomContainer extends ConsumerWidget {
     return InkWell(
       onTap: () {
         ref.read(selectedColorProvider.notifier).state = selectedColor;
+        Preferences.selectedColor = selectedColor;
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 3),

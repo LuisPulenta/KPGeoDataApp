@@ -15,11 +15,6 @@ class MenuItem {
 
 const List<MenuItem> appMenuItems = <MenuItem>[
   MenuItem(
-      title: 'Login',
-      subtitle: 'Ingreso al Sistema',
-      link: '/login',
-      icon: Icons.add),
-  MenuItem(
       title: 'Pantalla 2',
       subtitle: 'Subtìtulo de la Pantalla 2',
       link: '/pantalla2',
@@ -35,13 +30,18 @@ const List<MenuItem> appMenuItems = <MenuItem>[
       link: '/pantalla4',
       icon: Icons.refresh_rounded),
   MenuItem(
-      title: 'Pantalla 5',
-      subtitle: 'Subtìtulo de la Pantalla 5',
-      link: '/pantalla5',
-      icon: Icons.info_outline),
-  MenuItem(
       title: 'Cambiar tema',
       subtitle: 'Cambiar tema de la Aplicación',
       link: '/theme',
       icon: Icons.color_lens_outlined),
+  MenuItem(
+      title: 'Cambiar Contraseña',
+      subtitle: 'Cambiar Contraseña',
+      link: '/changepassword',
+      icon: Icons.password),
+  MenuItem(
+      title: 'Cerrar Sesión',
+      subtitle: 'Cerrar Sesión',
+      link: '/',
+      icon: Icons.exit_to_app),
 ];
