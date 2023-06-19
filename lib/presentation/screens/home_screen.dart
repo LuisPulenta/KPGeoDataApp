@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:kpgeodataapp/presentation/widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -38,7 +37,7 @@ class _HomeView extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [],
+        children: const [],
       ),
     );
   }

@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kpgeodataapp/config/constants/environment.dart';
-import 'package:kpgeodataapp/presentation/blocs/login/login_cubit.dart';
 import 'package:kpgeodataapp/presentation/providers/providers.dart';
 import 'package:kpgeodataapp/presentation/widgets/widgets.dart';
-
-import '../../config/helpers/preferences.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -86,7 +82,6 @@ class _LoginForm extends ConsumerWidget {
     //final loginCubit = context.watch<LoginCubit>();
     // final email = loginCubit.state.email;
     // final password = loginCubit.state.password;
-    // final showPassword = loginCubit.state.showPassword;
 
     return Container(
       decoration: BoxDecoration(
@@ -139,14 +134,15 @@ class _LoginForm extends ConsumerWidget {
                       ? loginForm.password.errorMessage
                       : null,
                   prefixIcon: Icons.password,
-                  // suffixIcon:
-                  //     showPassword ? Icons.visibility : Icons.visibility_off,
+                  suffixIcon: loginForm.showPassword
+                      ? Icons.visibility
+                      : Icons.visibility_off,
                   onChanged:
                       ref.read(loginFormProvider.notifier).onPasswordChange,
-                  // obscureText: !showPassword,
-                  // onChanged2: () {
-                  //   loginCubit.toogleShowPassword();
-                  // },
+                  obscureText: !loginForm.showPassword,
+                  onChanged2: () {
+                    ref.read(loginFormProvider.notifier).toogleShowPassword();
+                  },
                 ),
                 SizedBox(
                   height: size.height * 0.025,
