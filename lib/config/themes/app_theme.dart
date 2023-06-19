@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kpgeodataapp/config/helpers/helpers.dart';
-import 'package:kpgeodataapp/config/helpers/preferences.dart';
+import 'package:kpgeodataapp/config/config.dart';
 
 const List<Color> colorThemes = [
   Colors.blueAccent,

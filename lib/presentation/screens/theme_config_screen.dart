@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kpgeodataapp/config/helpers/helpers.dart';
-
-import '../providers/theme_provider.dart';
+import 'package:kpgeodataapp/config/config.dart';
+import 'package:kpgeodataapp/presentation/providers/providers.dart';
 
 class ThemeConfigScreen extends StatelessWidget {
   const ThemeConfigScreen({Key? key}) : super(key: key);

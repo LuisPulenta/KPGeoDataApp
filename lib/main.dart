@@ -1,30 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kpgeodataapp/config/helpers/helpers.dart';
-import 'package:kpgeodataapp/config/routers/app_router.dart';
-import 'package:kpgeodataapp/config/themes/themes.dart';
-
+import 'package:kpgeodataapp/config/config.dart';
 import 'presentation/providers/theme_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Environment.initEnvironment();
   await Preferences.init();
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends ConsumerStatefulWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _MyAppState();
-}
-
-class _MyAppState extends ConsumerState<MyApp> {
-  @override
-  void initState() {}
-
-  @override
-  Widget build(BuildContext contextn) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,

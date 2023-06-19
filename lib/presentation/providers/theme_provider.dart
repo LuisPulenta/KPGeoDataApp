@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kpgeodataapp/config/themes/themes.dart';
+import 'package:kpgeodataapp/config/config.dart';
 
 //Un simple booleano
 final isDarkmodeProvider = StateProvider<bool>((ref) => false);
