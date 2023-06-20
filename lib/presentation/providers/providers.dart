@@ -1,3 +1,4 @@
-export 'package:kpgeodataapp/presentation/providers/theme_provider.dart';
-export 'package:kpgeodataapp/presentation/providers/index_menu_provider.dart';
-export 'package:kpgeodataapp/presentation/providers/login_form_provider.dart';
+export 'theme_provider.dart';
+export 'index_menu_provider.dart';
+export 'login_form_provider.dart';
+export 'auth_provider.dart';

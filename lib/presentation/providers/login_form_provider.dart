@@ -1,25 +1,24 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:formz/formz.dart';
-import 'package:kpgeodataapp/infrastructure/inputs/inputs.dart';
+import 'package:kpgeodataapp/infrastructure/infrastructure.dart';
+import 'package:kpgeodataapp/presentation/providers/providers.dart';
 
 //! 3 - StateNotifierProvider - consume afuera
 
 final loginFormProvider =
     StateNotifierProvider.autoDispose<LoginFormNotifier, LoginFormState>((ref) {
-  // final loginUserCallback = ref.watch(authProvider.notifier).loginUser;
+  final loginUserCallback = ref.watch(authProvider.notifier).loginUser;
   // return LoginFormNotifier(loginUserCallback: loginUserCallback);
-  return LoginFormNotifier();
+  return LoginFormNotifier(loginUserCallback: loginUserCallback);
 });
 
 //! 2 - Como implementamos un notifier
 
 class LoginFormNotifier extends StateNotifier<LoginFormState> {
-  //final Function(String, String) loginUserCallback;
+  final Function(String, String) loginUserCallback;
 
-  // LoginFormNotifier({required this.loginUserCallback})
-  //     : super(LoginFormState());
-
-  LoginFormNotifier() : super(LoginFormState());
+  LoginFormNotifier({required this.loginUserCallback})
+      : super(LoginFormState());
 
   onEmailChange(String value) {
     final newEmail = Email.dirty(value);
@@ -42,9 +41,9 @@ class LoginFormNotifier extends StateNotifier<LoginFormState> {
     _touchedEveryField();
     if (!state.isValid) return;
     //print(state);
-    // state = state.copyWith(isPosting: true);
-    //await loginUserCallback(state.email.value, state.password.value);
-    // state = state.copyWith(isPosting: false);
+    state = state.copyWith(isPosting: true);
+    await loginUserCallback(state.email.value, state.password.value);
+    state = state.copyWith(isPosting: false);
   }
 
   _touchedEveryField() {
