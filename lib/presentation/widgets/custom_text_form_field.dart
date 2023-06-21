@@ -8,6 +8,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final Function(String)? onChanged;
   final Function()? onChanged2;
+  final Function(String)? onFieldSubmitted;
   final String? Function(String?)? validator;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
@@ -21,6 +22,7 @@ class CustomTextFormField extends StatelessWidget {
       this.keyboardType = TextInputType.text,
       this.onChanged,
       this.onChanged2,
+      this.onFieldSubmitted,
       this.validator,
       this.prefixIcon,
       this.suffixIcon});
@@ -34,6 +36,7 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       onChanged: onChanged,
       validator: validator,
+      onFieldSubmitted: onFieldSubmitted,
       obscureText: obscureText!,
       keyboardType: keyboardType,
       decoration: InputDecoration(

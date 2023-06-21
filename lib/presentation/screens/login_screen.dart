@@ -164,6 +164,8 @@ class _LoginForm extends ConsumerWidget {
                       : Icons.visibility_off,
                   onChanged:
                       ref.read(loginFormProvider.notifier).onPasswordChange,
+                  onFieldSubmitted: (_) =>
+                      ref.read(loginFormProvider.notifier).onFormSubmit(),
                   obscureText: !loginForm.showPassword,
                   onChanged2: () {
                     ref.read(loginFormProvider.notifier).toogleShowPassword();
