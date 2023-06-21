@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kpgeodataapp/config/menu/menu_items.dart';
+import 'package:kpgeodataapp/presentation/providers/providers.dart';
+import 'package:kpgeodataapp/presentation/widgets/widgets.dart';
 
-class SideMenu extends StatefulWidget {
+class SideMenu extends ConsumerStatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
-  const SideMenu({Key? key, required this.scaffoldKey}) : super(key: key);
+
+  const SideMenu({super.key, required this.scaffoldKey});
 
   @override
-  State<SideMenu> createState() => _SideMenuState();
+  SideMenuState createState() => SideMenuState();
 }
 
-class _SideMenuState extends State<SideMenu> {
+class SideMenuState extends ConsumerState<SideMenu> {
   //---------------------------------------------------------
   //------------------- Variables ---------------------------
   //---------------------------------------------------------
@@ -87,6 +91,16 @@ class _SideMenuState extends State<SideMenu> {
                   label: Text(e.title),
                 ),
               ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: CustomButton(
+                icon: Icons.exit_to_app,
+                color: colors.inversePrimary,
+                onPressed: () {
+                  ref.read(authProvider.notifier).logout();
+                },
+                text: 'Cerrar sesión'),
+          ),
         ]);
   }
 }

@@ -5,17 +5,27 @@ import 'package:kpgeodataapp/config/constants/environment.dart';
 import 'package:kpgeodataapp/presentation/providers/providers.dart';
 import 'package:kpgeodataapp/presentation/widgets/widgets.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends ConsumerWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final loginForm = ref.watch(loginFormProvider);
+    return Scaffold(
       // appBar: AppBar(
       //   title: const Text('Login'),
       //   centerTitle: true,
       // ),
-      body: GeometricalBackground(child: _LoginView()),
+      body: Stack(
+        children: [
+          const GeometricalBackground(child: _LoginView()),
+          loginForm.isPosting
+              ? const LoaderComponent(
+                  text: 'Por favor espere...',
+                )
+              : Container()
+        ],
+      ),
     );
   }
 }
@@ -168,25 +178,13 @@ class _LoginForm extends ConsumerWidget {
                     icon: Icons.login,
                     width: double.infinity,
                     height: 54,
-                    onPressed: () {
-                      FocusScope.of(context).unfocus(); //Oculta el teclado
-                      ref.read(loginFormProvider.notifier).onFormSubmit();
-                    }
-
-                    // onPressed: () {
-                    //   FocusScope.of(context).unfocus(); //Oculta el teclado
-                    //   loginCubit.onSubmit();
-                    //   if ((loginCubit.state.email.value.toString() ==
-                    //           'luis@yopmail.com') &&
-                    //       (loginCubit.state.password.value.toString() ==
-                    //           '123456')) {
-                    //     Preferences.userBody =
-                    //         loginCubit.state.email.value.toString();
-                    //     Preferences.rememberme = true;
-                    //     context.go('/home');
-                    //   }
-                    // },
-                    ),
+                    onPressed: loginForm.isPosting
+                        ? null
+                        : () {
+                            FocusScope.of(context)
+                                .unfocus(); //Oculta el teclado
+                            ref.read(loginFormProvider.notifier).onFormSubmit();
+                          }),
                 SizedBox(
                   height: size.height * 0.0125,
                 ),

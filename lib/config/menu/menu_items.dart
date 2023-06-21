@@ -39,9 +39,4 @@ const List<MenuItem> appMenuItems = <MenuItem>[
       subtitle: 'Cambiar Contraseña',
       link: '/changepassword',
       icon: Icons.password),
-  MenuItem(
-      title: 'Cerrar Sesión',
-      subtitle: 'Cerrar Sesión',
-      link: '/',
-      icon: Icons.exit_to_app),
 ];
