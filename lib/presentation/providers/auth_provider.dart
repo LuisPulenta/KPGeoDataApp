@@ -1,29 +1,27 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kpgeodataapp/config/helpers/services/services.dart';
 import 'package:kpgeodataapp/domain/domain.dart';
 import 'package:kpgeodataapp/infrastructure/infrastructure.dart';
-//import 'package:kpgeodataapp/infrastructure/services/key_value_storage_service_impl.dart';
 
 //! 3 - StateNotifierProvider - consume afuera
 
 final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
   final authRepository = AuthRepositoryImpl();
-  //final keyValueStorageService = KeyValueStorageServiceImpl();
+  final keyValueStorageService = KeyValueStorageServiceImpl();
 
   return AuthNotifier(
-    authRepository: authRepository,
-    //keyValueStorageService: keyValueStorageService
-  );
+      authRepository: authRepository,
+      keyValueStorageService: keyValueStorageService);
 });
 
 //! 2 - Como implementamos un notifier
 
 class AuthNotifier extends StateNotifier<AuthState> {
   final AuthRepository authRepository;
-  //final KeyValueStorageServiceImpl keyValueStorageService;
+  final KeyValueStorageServiceImpl keyValueStorageService;
 
-  AuthNotifier({required this.authRepository
-      //, required this.keyValueStorageService
-      })
+  AuthNotifier(
+      {required this.authRepository, required this.keyValueStorageService})
       : super(AuthState()) {
     checkAuthStatus();
   }
@@ -42,18 +40,18 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 
   void checkAuthStatus() async {
-    // final token = await keyValueStorageService.getValue<String>('token');
-    // if (token == null) return logout();
-    // try {
-    //   final user = await authRepository.checkAuthStatus(token);
-    //   _setLoggedUser(user);
-    // } catch (e) {
-    //   logout();
-    // }
+    final token = await keyValueStorageService.getValue<String>('token');
+    if (token == null) return logout();
+    try {
+      final user = await authRepository.checkAuthStatus(token);
+      _setLoggedUser(user);
+    } catch (e) {
+      logout();
+    }
   }
 
   Future<void> logout([String? errorMessage]) async {
-    //await keyValueStorageService.removeKey('token');
+    await keyValueStorageService.removeKey('token');
     state = state.copyWith(
         user: null,
         authStatus: AuthStatus.notAuthenticated,
@@ -61,7 +59,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 
   void _setLoggedUser(User user) async {
-    //await keyValueStorageService.setKeyValue('token', user.token);
+    await keyValueStorageService.setKeyValue('token', user.token);
     state = state.copyWith(
         user: user, authStatus: AuthStatus.authenticated, errorMessage: '');
   }

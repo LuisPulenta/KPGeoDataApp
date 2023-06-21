@@ -1,7 +1,7 @@
 import 'package:kpgeodataapp/domain/domain.dart';
 
 class UserMapper {
-  static User userJsontToEntity(Map<String, dynamic> json) => User(
+  static User userJsonToEntity(Map<String, dynamic> json) => User(
       id: json['id'],
       email: json['email'],
       fullName: json['fullName'],

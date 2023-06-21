@@ -12,7 +12,7 @@ class AuthDatasourceImpl extends AuthDatasource {
       final response = await dio.get('/auth/check-status',
           options: Options(headers: {'Authorization': 'Bearer $token'}));
 
-      final user = UserMapper.userJsontToEntity(response.data);
+      final user = UserMapper.userJsonToEntity(response.data);
       return user;
     } on DioException catch (e) {
       if (e.response?.statusCode == 401) {
@@ -33,7 +33,7 @@ class AuthDatasourceImpl extends AuthDatasource {
       final response = await dio
           .post('/auth/login', data: {'email': email, 'password': password});
 
-      final user = UserMapper.userJsontToEntity(response.data);
+      final user = UserMapper.userJsonToEntity(response.data);
       return user;
     } on DioException catch (e) {
       if (e.response?.statusCode == 401) {

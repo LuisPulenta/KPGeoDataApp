@@ -4,3 +4,4 @@ export 'home_screen.dart';
 export 'theme_config_screen.dart';
 export 'pantalla2_screen.dart';
 export 'login_screen.dart';
+export 'check_status_screen.dart';

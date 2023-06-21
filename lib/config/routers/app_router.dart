@@ -3,8 +3,12 @@ import 'package:kpgeodataapp/presentation/screens/screens.dart';
 
 // GoRouter configuration
 final appRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/checking',
   routes: [
+    GoRoute(
+      path: '/checking',
+      builder: (context, state) => const CheckStatusScreen(),
+    ),
     GoRoute(
       path: '/',
       builder: (context, state) => const LoginScreen(),
